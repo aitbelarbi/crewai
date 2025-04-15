@@ -2,7 +2,10 @@ from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from langchain_community.tools import DuckDuckGoSearchRun
 
-search_tool = DuckDuckGoSearchRun()
+@tool('DuckDuckGoSearch')
+def search(search_query: str): 
+    return DuckDuckGoSearchRun.run(search_query)
+
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
@@ -37,7 +40,7 @@ class Copyright():
     def recipe_researcher(self) -> Agent:
         return Agent(
             config=self.agents_config['recipe_researcher'],
-            tools=[search_tool],
+            tools=[search],
             verbose=True
         )
     
@@ -45,7 +48,7 @@ class Copyright():
     def seo_specialist(self) -> Agent:
         return Agent(
             config=self.agents_config['seo_specialist'],
-            tools=[search_tool],
+            tools=[search],
             verbose=True
         )
 
