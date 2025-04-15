@@ -77,7 +77,7 @@ class Copyright():
     def task_seo_analysis(self) -> Task:
         return Task(
             config=self.tasks_config['task_seo_analysis'],
-            context=[task_research_recipe_here],
+            context=[task_research_recipe_here()],
             output_file='report.md'
         )
     
