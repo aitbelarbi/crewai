@@ -1,9 +1,6 @@
 from crewai.tools import BaseTool
 from typing import Type
 from pydantic import BaseModel, Field
-from langchain_community.tools import DuckDuckGoSearchRun
-
-search_tool = DuckDuckGoSearchRun()
 
 class MyCustomToolInput(BaseModel):
     """Input schema for MyCustomTool."""
