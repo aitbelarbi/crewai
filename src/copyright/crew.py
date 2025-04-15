@@ -75,8 +75,6 @@ class Copyright():
 
     @task
     def task_seo_analysis(self) -> Task:
-        print("here: ")
-        print(self.tasks)
         return Task(
             config=self.tasks_config['task_seo_analysis'],
             context=["task_research_recipe_here"],
