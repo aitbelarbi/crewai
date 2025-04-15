@@ -31,7 +31,7 @@ task_research_recipe:
     4. A short Summary of the key preparation steps.
   agent: recipe_researcher
 
-  task_seo_analysis:
+task_seo_analysis:
   description: >
     Perform an SEO analysis for the recipe identified in the previous step.
     Use the search tool for this analysis. Specifically:
