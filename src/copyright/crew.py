@@ -1,6 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from langchain_community.tools import DuckDuckGoSearchRun
+from langchain.agents import Tool, load_tools
 
 @tool('DuckDuckGoSearch')
 def search(search_query: str): 
