@@ -68,6 +68,8 @@ class Copyright():
 
     @task
     def task_research_recipe(self) -> Task:
+        print("heeereee")
+        print(self.tasks_config)  
         return Task(
             config=self.tasks_config['task_research_recipe'],
             output_file='report.md'
@@ -75,6 +77,8 @@ class Copyright():
 
     @task
     def task_seo_analysis(self) -> Task:
+        print("heeereee2:")
+        print(self.tasks_config)  
         return Task(
             config=self.tasks_config['task_seo_analysis'],
             context=[task_research_recipe],
