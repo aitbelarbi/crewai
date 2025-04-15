@@ -1,6 +1,6 @@
 task_research_recipe:
   description: >
-    Research popular and highly-rated recipes specifically about {recipe_theme}.
+    Research popular and highly-rated recipes at this moment.
     Use the search tool to find promising recipe ideas.
     Select ONE specific recipe that seems suitable for a blog post.
     Extract its name, a brief description, the main ingredients (list format),
