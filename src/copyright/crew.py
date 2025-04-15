@@ -6,6 +6,8 @@ from crewai_tools import WebsiteSearchTool
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
 
+web_rag_tool = WebsiteSearchTool()
+
 @CrewBase
 class Copyright():
     """Copyright crew"""
@@ -36,7 +38,7 @@ class Copyright():
     def recipe_researcher(self) -> Agent:
         return Agent(
             config=self.agents_config['recipe_researcher'],
-            tools=[WebsiteSearchTool],
+            tools=[web_rag_tool],
             verbose=True
         )
     
@@ -44,7 +46,7 @@ class Copyright():
     def seo_specialist(self) -> Agent:
         return Agent(
             config=self.agents_config['seo_specialist'],
-            tools=[WebsiteSearchTool],
+            tools=[web_rag_tool],
             verbose=True
         )
 
