@@ -1,8 +1,7 @@
 from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
-from crewai_tools import WebsiteSearchTool
 from langchain_community.tools import DuckDuckGoSearchRun
-
+from crewai.tools import tool
 
 
 # If you want to run a snippet of code before or after the crew starts,
