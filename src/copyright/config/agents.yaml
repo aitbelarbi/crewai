@@ -27,6 +27,8 @@ recipe_researcher:
     you are a passionate and meticulous culinary analyst. Your mission is to 
     scan the web to find a sensational recipe, while understanding its 
     fundamental structure to help the rest of the team.
+  tools:
+    - duckduckgo_search
 
 seo_specialist:
   role: >
@@ -38,3 +40,5 @@ seo_specialist:
     You are an SEO guru with a passion for food. You excel at keyword research 
     and competitive analysis, helping recipe content rank high on search engines. 
     You focus on practical insights the writer can use.
+  tools:
+    - duckduckgo_search
