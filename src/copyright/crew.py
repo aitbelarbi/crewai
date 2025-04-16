@@ -3,15 +3,17 @@ from crewai.project import CrewBase, agent, crew, task
 from langchain_community.tools import DuckDuckGoSearchRun
 from crewai.tools import tool
 
+search_tool = DuckDuckGoSearchRun()
+
 
 # If you want to run a snippet of code before or after the crew starts,
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
 
-@tool # Décorateur pour enregistrer l'outil
-def duckduckgo_search(self) -> DuckDuckGoSearchRun: # Le nom de la méthode correspond à la clé YAML
-    """Outil pour effectuer des recherches générales sur le web."""
-    return DuckDuckGoSearchRun()
+#@tool # Décorateur pour enregistrer l'outil
+#def duckduckgo_search(self) -> DuckDuckGoSearchRun: # Le nom de la méthode correspond à la clé YAML
+#    """Outil pour effectuer des recherches générales sur le web."""
+#    return DuckDuckGoSearchRun()
 
 @CrewBase
 class Copyright():
@@ -27,7 +29,7 @@ class Copyright():
     def recipe_researcher(self) -> Agent:
         return Agent(
             config=self.agents_config['recipe_researcher'],
-            tools=[duckduckgo_search],
+        #    tools=[duckduckgo_search],
             verbose=True
         )
     
@@ -35,7 +37,7 @@ class Copyright():
     def seo_specialist(self) -> Agent:
         return Agent(
             config=self.agents_config['seo_specialist'],
-            tools=[duckduckgo_search],
+        #    tools=[duckduckgo_search],
             verbose=True
         )
     
@@ -63,6 +65,7 @@ class Copyright():
             agents=self.agents, # Automatically created by the @agent decorator
             tasks=self.tasks, # Automatically created by the @task decorator
             process=Process.sequential,
+            tools=[search_tool],
             verbose=True,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )
