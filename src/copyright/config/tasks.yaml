@@ -26,7 +26,8 @@ task_seo_analysis:
     1. A list of 3-5 recommended SEO keywords (primary and secondary).
     2. A brief summary of the structure and key angles observed in 1-2 top competitor articles.
   agent: seo_specialist
-  context: task_research_recipe
+  context: 
+    - task_research_recipe
 
 #research_task:
 #  description: >
