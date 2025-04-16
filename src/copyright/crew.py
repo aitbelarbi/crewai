@@ -8,6 +8,11 @@ from crewai.tools import tool
 # you can use the @before_kickoff and @after_kickoff decorators
 # https://docs.crewai.com/concepts/crews#example-crew-class-with-decorators
 
+@tool # Décorateur pour enregistrer l'outil
+def duckduckgo_search(self) -> DuckDuckGoSearchRun: # Le nom de la méthode correspond à la clé YAML
+    """Outil pour effectuer des recherches générales sur le web."""
+    return DuckDuckGoSearchRun()
+
 @CrewBase
 class Copyright():
     """Copyright crew"""
@@ -17,11 +22,6 @@ class Copyright():
     # Tasks: https://docs.crewai.com/concepts/tasks#yaml-configuration-recommended
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
-
-    @tool # Décorateur pour enregistrer l'outil
-    def duckduckgo_search(self) -> DuckDuckGoSearchRun: # Le nom de la méthode correspond à la clé YAML
-        """Outil pour effectuer des recherches générales sur le web."""
-        return DuckDuckGoSearchRun()
 
     @agent
     def recipe_researcher(self) -> Agent:
