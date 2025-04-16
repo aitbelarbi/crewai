@@ -3,7 +3,6 @@ from crewai.project import CrewBase, agent, crew, task
 from crewai_tools import WebsiteSearchTool
 from langchain_community.tools import DuckDuckGoSearchRun
 
-web_rag_tool = DuckDuckGoSearchRun()
 
 
 # If you want to run a snippet of code before or after the crew starts,
@@ -20,11 +19,15 @@ class Copyright():
     agents_config = 'config/agents.yaml'
     tasks_config = 'config/tasks.yaml'
 
+    @tool # Décorateur pour enregistrer l'outil
+    def duckduckgo_search(self) -> DuckDuckGoSearchRun: # Le nom de la méthode correspond à la clé YAML
+        """Outil pour effectuer des recherches générales sur le web."""
+        return DuckDuckGoSearchRun()
+
     @agent
     def recipe_researcher(self) -> Agent:
         return Agent(
             config=self.agents_config['recipe_researcher'],
-            tools=[web_rag_tool],
             verbose=True
         )
     
@@ -32,7 +35,6 @@ class Copyright():
     def seo_specialist(self) -> Agent:
         return Agent(
             config=self.agents_config['seo_specialist'],
-            tools=[web_rag_tool],
             verbose=True
         )
     
