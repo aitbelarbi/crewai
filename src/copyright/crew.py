@@ -34,13 +34,6 @@ class Copyright():
         )
     
     @agent
-    def recipe_writer(self) -> Agent:
-        return Agent(
-            config=self.agents_config['recipe_writer'],
-            verbose=True
-        )
-
-    @agent
     def seo_specialist(self) -> Agent:
         return Agent(
             config=self.agents_config['seo_specialist'],
@@ -48,25 +41,31 @@ class Copyright():
             verbose=True
         )
     
+    @agent
+    def recipe_writer(self) -> Agent:
+        return Agent(
+            config=self.agents_config['recipe_writer'],
+            verbose=True
+        )
     @task
     def task_research_recipe(self) -> Task:
         return Task(
             config=self.tasks_config['task_research_recipe'],
             output_file='report.md'
         )
-
-    @task
-    def task_write_recipe(self) -> Task:
-        return Task(
-            config=self.tasks_config['task_write_recipe'],
-            output_file='recipe_article.md'
-        )
-
+    
     @task
     def task_seo_analysis(self) -> Task:
         return Task(
             config=self.tasks_config['task_seo_analysis'],
             output_file='report.md'
+        )
+    
+    @task
+    def task_write_recipe(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_write_recipe'],
+            output_file='recipe_article.md'
         )
     
     @crew
