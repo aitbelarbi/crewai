@@ -129,7 +129,7 @@ class Copyright():
         
         return Crew(
             agents=worker_agents, # Automatically created by the @agent decorator
-            tasks=self.tasks, # Automatically created by the @task decorator
+            tasks=[self.task_manage_article_creation()], # Automatically created by the @task decorator
             process=Process.hierarchical,
             tools=[search_tool], 
             manager_agent=self.content_quality_manager(),
