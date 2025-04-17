@@ -75,11 +75,30 @@ task_check_plagiarism:
     *Explicitly acknowledge in the report that this method is a limited check 
     and only detects direct copy-pasting.*
   expected_output: >
-    A plagiarism check report in Markdown format containing:
-    1. A list of the exact phrases checked.
-    2. For each phrase, the search result (URL of exact match or "No exact match found").
-    3. A conclusion on originality based on this limited analysis.
-    4. A reminder about best practices for original writing.
+    A JSON object containing:
+    1. status: (string, "PLAGIARISM_DETECTED" or "ORIGINALITY_OK")
+    2. checked_phrases: (list of strings)
+    3. matches_found: (list of objects, each with "phrase" and "url" if match found)
+    4. summary: (string, conclusion and reminder)
+    Example: {"status": "PLAGIARISM_DETECTED", "checked_phrases": ["..."], "matches_found": [{"phrase":"...", "url":"..."}], "summary": "..."}
   agent: plagiarism_checker
   context:
     - task_write_recipe 
+
+task_manage_article_creation:
+  description: >
+    Coordinate the full process to create an original, SEO-optimized blog post about the recipe topic: {topic}.
+    The process involves:
+    1. Delegating research for a trending recipe related to the topic to the recipe_researcher.
+    2. Delegating SEO analysis based on the research to the seo_specialist.
+    3. Delegating article writing based on research and SEO to the recipe_content_writer.
+    4. Delegating a plagiarism check on the written article to the plagiarism_checker.
+    5. **CRITICAL:** Analyze the plagiarism check report. 
+       - If 'ORIGINALITY_OK', finalize the process and present the final article.
+       - If 'PLAGIARISM_DETECTED', you MUST delegate a rewrite task back to the recipe_content_writer. Provide the plagiarism feedback clearly. Then, delegate the plagiarism check AGAIN on the rewritten article. Repeat this rewrite/re-check cycle only ONCE if plagiarism persists after the first rewrite.
+       - If plagiarism is still detected after the second check, stop the process and report the failure to fix the plagiarism.
+    Ensure you receive and manage the outputs from each delegated task to inform the next step.
+  expected_output: >
+    The final, approved, original blog post in Markdown format, OR a status report indicating 
+    that plagiarism issues could not be resolved after the allowed rewrite attempts.
+  agent: content_quality_manager

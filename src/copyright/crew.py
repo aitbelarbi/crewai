@@ -62,6 +62,14 @@ class Copyright():
             verbose=True
         )
     
+    @agent
+    def content_quality_manager(self) -> Agent:
+        return Agent(
+            config=self.agents_config['content_quality_manager'],
+            verbose=True, 
+            allow_delegation=True
+        )
+
     @task
     def task_research_recipe(self) -> Task:
         return Task(
@@ -97,6 +105,14 @@ class Copyright():
             output_file='plagiarism_report.md' # New output file
         )
 
+    @task
+    def task_manage_article_creation(self) -> Task:
+         # This task now drives the whole process via the manager's delegation
+         return Task(
+             config=self.tasks_config['task_manage_article_creation'],
+             output_file='manage_report.md'
+         )
+    
     @crew
     def crew(self) -> Crew:
         """Creates the Copyright crew"""
@@ -106,8 +122,9 @@ class Copyright():
         return Crew(
             agents=self.agents, # Automatically created by the @agent decorator
             tasks=self.tasks, # Automatically created by the @task decorator
-            process=Process.sequential,
-            tools=[search_tool],
+            process=Process.hierarchical,
+            tools=[search_tool], 
+            manager_agent=self.content_quality_manager(),
             verbose=True,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )
