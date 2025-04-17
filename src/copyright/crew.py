@@ -126,10 +126,10 @@ class Copyright():
             self.human_editor(),
             self.plagiarism_checker()
         ]
-
+        
         return Crew(
-            agents=self.agents, # Automatically created by the @agent decorator
-            tasks=worker_agents, # Automatically created by the @task decorator
+            agents=worker_agents, # Automatically created by the @agent decorator
+            tasks=self.tasks, # Automatically created by the @task decorator
             process=Process.hierarchical,
             tools=[search_tool], 
             manager_agent=self.content_quality_manager(),
