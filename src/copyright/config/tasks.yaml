@@ -56,3 +56,30 @@ task_human_editing:
   agent: human_editor
   context:
     - task_write_recipe
+
+task_check_plagiarism:
+  description: >
+    Carefully analyze the content of the blog post provided in the context 
+    (usually the output of the writing or editing task).
+    1. Select 5 to 7 distinct and representative sentences or passages from the article.
+    2. For each selected phrase, use the search tool to find 
+       *exact matches* (put the phrase in quotes in the search query).
+    3. Clearly report:
+        - The exact phrases that were checked.
+        - If an exact match was found for a phrase, provide the URL 
+          of the matching source if possible.
+        - If no exact match was found for a phrase, state this explicitly.
+    4. Provide a concise conclusion on the *apparent* risk of plagiarism based 
+       on this spot-check.
+    5. Briefly remind the user about the necessity of always paraphrasing and citing sources correctly.
+    *Explicitly acknowledge in the report that this method is a limited check 
+    and only detects direct copy-pasting.*
+  expected_output: >
+    A plagiarism check report in Markdown format containing:
+    1. A list of the exact phrases checked.
+    2. For each phrase, the search result (URL of exact match or "No exact match found").
+    3. A conclusion on originality based on this limited analysis.
+    4. A reminder about best practices for original writing.
+  agent: plagiarism_checker
+  context:
+    - task_write_recipe 

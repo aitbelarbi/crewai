@@ -54,6 +54,14 @@ class Copyright():
             config=self.agents_config['human_editor'],
             verbose=True
         )
+
+    @agent
+    def plagiarism_checker(self) -> Agent:
+        return Agent(
+            config=self.agents_config['plagiarism_checker'],
+            verbose=True
+        )
+    
     @task
     def task_research_recipe(self) -> Task:
         return Task(
@@ -80,6 +88,13 @@ class Copyright():
         return Task(
             config=self.tasks_config['task_human_editing'],
             output_file='edited_article.md'
+        )
+
+    @task
+    def task_check_plagiarism(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_check_plagiarism'],
+            output_file='plagiarism_report.md' # New output file
         )
 
     @crew
