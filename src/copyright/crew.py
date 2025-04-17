@@ -62,7 +62,6 @@ class Copyright():
             verbose=True
         )
     
-    @agent
     def content_quality_manager(self) -> Agent:
         return Agent(
             config=self.agents_config['content_quality_manager'],
