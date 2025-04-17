@@ -13,6 +13,21 @@ task_research_recipe:
     4. A short Summary of the key preparation steps.
   agent: recipe_researcher
 
+task_write_recipe:
+  description: >
+    Using the selected recipe from the previous step, write a detailed and engaging recipe blog post.
+    The blog post should include:
+      - A catchy title
+      - An introductory paragraph that hooks the reader
+      - A formatted list of ingredients
+      - Step-by-step instructions
+      - Optional tips or serving suggestions
+  expected_output: >
+    A blog article formatted in Markdown, ready to be edited or published.
+  agent: recipe_writer
+  context:
+    - task_research_recipe 
+
 task_seo_analysis:
   description: >
     Perform an SEO analysis for the recipe identified in the previous step.
@@ -27,22 +42,4 @@ task_seo_analysis:
     2. A brief summary of the structure and key angles observed in 1-2 top competitor articles.
   agent: seo_specialist
   context: 
-    - task_research_recipe
-
-#research_task:
-#  description: >
-#    Conduct a thorough research about {topic}
-#    Make sure you find any interesting and relevant information given
-#    the current year is {current_year}.
-#  expected_output: >
-#    A list with 10 bullet points of the most relevant information about {topic}
-#  agent: researcher
-
-#reporting_task:
-#  description: >
-#    Review the context you got and expand each topic into a full section for a report.
-#    Make sure the report is detailed and contains any and all relevant information.
-#  expected_output: >
-#    A fully fledged report with the main topics, each with a full section of information.
-#    Formatted as markdown without '```'
-#  agent: reporting_analyst
+    - task_write_recipe
