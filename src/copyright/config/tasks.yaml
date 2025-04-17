@@ -43,3 +43,16 @@ task_write_recipe:
   agent: recipe_writer
   context:
     - task_seo_analysis 
+
+task_human_editing:
+  description: >
+    Edit the previously written recipe blog post to improve its tone and flow.
+    Make the writing feel more human and natural, like a warm and friendly food blogger.
+    Keep the structure but rewrite awkward or robotic parts. Add a bit of personality.
+  expected_output: >
+    A polished version of the blog article with a more human, friendly, and natural tone.
+    Keep the formatting (title, intro, ingredients, steps), but improve transitions, 
+    add warmth, and remove stiff language.
+  agent: human_editor
+  context:
+    - task_write_recipe

@@ -47,6 +47,13 @@ class Copyright():
             config=self.agents_config['recipe_writer'],
             verbose=True
         )
+    
+    @agent
+    def human_editor(self) -> Agent:
+        return Agent(
+            config=self.agents_config['human_editor'],
+            verbose=True
+        )
     @task
     def task_research_recipe(self) -> Task:
         return Task(
@@ -68,6 +75,13 @@ class Copyright():
             output_file='recipe_article.md'
         )
     
+    @task
+    def task_human_editing(self) -> Task:
+        return Task(
+            config=self.tasks_config['task_human_editing'],
+            output_file='edited_article.md'
+        )
+
     @crew
     def crew(self) -> Crew:
         """Creates the Copyright crew"""
