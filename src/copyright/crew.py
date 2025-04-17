@@ -62,6 +62,7 @@ class Copyright():
             verbose=True
         )
     
+    @agent
     def content_quality_manager(self) -> Agent:
         return Agent(
             config=self.agents_config['content_quality_manager'],
@@ -122,41 +123,7 @@ class Copyright():
             agents=self.agents, # Automatically created by the @agent decorator
             tasks=self.tasks, # Automatically created by the @task decorator
             process=Process.hierarchical,
-            tools=[search_tool], 
-            manager_agent=self.content_quality_manager(),
+            tools=[search_tool],
             verbose=True,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )
-
-    # If you would like to add tools to your agents, you can learn more about it here:
-    # https://docs.crewai.com/concepts/agents#agent-tools
- #   @agent
- #   def researcher(self) -> Agent:
- #       return Agent(
- #           config=self.agents_config['researcher'],
- #           verbose=True
- #       )
-
- #   @agent
- #   def reporting_analyst(self) -> Agent:
- #       return Agent(
- #           config=self.agents_config['reporting_analyst'],
- #           verbose=True
- #       )
-    
-
-    # To learn more about structured task outputs,
-    # task dependencies, and task callbacks, check out the documentation:
-    # https://docs.crewai.com/concepts/tasks#overview-of-a-task
- #   @task
- #   def research_task(self) -> Task:
- #       return Task(
- #           config=self.tasks_config['research_task'],
- #       )
-
- #   @task
- #   def reporting_task(self) -> Task:
- #       return Task(
- #           config=self.tasks_config['reporting_task'],
- #           output_file='report.md'
- #       )
