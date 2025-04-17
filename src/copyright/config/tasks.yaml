@@ -40,6 +40,7 @@ task_write_recipe:
       - Optional tips or serving suggestions
   expected_output: >
     A blog article formatted in Markdown, ready to be edited or published.
+
   agent: recipe_writer
   context:
     - task_seo_analysis 
@@ -87,15 +88,15 @@ task_check_plagiarism:
 
 task_manage_article_creation:
   description: >
-    Coordinate the full process to create an original, SEO-optimized blog post about the recipe topic: {topic}.
-    The process involves:
+    Coordinate the full process to create an original, SEO-optimized blog post about the recipe.
+    The process involves: 
     1. Delegating research for a trending recipe related to the topic to the recipe_researcher.
     2. Delegating SEO analysis based on the research to the seo_specialist.
-    3. Delegating article writing based on research and SEO to the recipe_content_writer.
+    3. Delegating article writing based on research and SEO to the recipe_writer.
     4. Delegating a plagiarism check on the written article to the plagiarism_checker.
     5. **CRITICAL:** Analyze the plagiarism check report. 
        - If 'ORIGINALITY_OK', finalize the process and present the final article.
-       - If 'PLAGIARISM_DETECTED', you MUST delegate a rewrite task back to the recipe_content_writer. Provide the plagiarism feedback clearly. Then, delegate the plagiarism check AGAIN on the rewritten article. Repeat this rewrite/re-check cycle only ONCE if plagiarism persists after the first rewrite.
+       - If 'PLAGIARISM_DETECTED', you MUST delegate a rewrite task back to the recipe_writer. Provide the plagiarism feedback clearly. Then, delegate the plagiarism check AGAIN on the rewritten article. Repeat this rewrite/re-check cycle only ONCE if plagiarism persists after the first rewrite.
        - If plagiarism is still detected after the second check, stop the process and report the failure to fix the plagiarism.
     Ensure you receive and manage the outputs from each delegated task to inform the next step.
   expected_output: >
