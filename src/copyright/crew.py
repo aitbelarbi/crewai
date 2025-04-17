@@ -119,11 +119,20 @@ class Copyright():
         # To learn how to add knowledge sources to your crew, check out the documentation:
         # https://docs.crewai.com/concepts/knowledge#what-is-knowledge
 
+        worker_agents = [
+            self.recipe_researcher(),
+            self.seo_specialist(),
+            self.recipe_writer(),
+            self.human_editor(),
+            self.plagiarism_checker()
+        ]
+
         return Crew(
             agents=self.agents, # Automatically created by the @agent decorator
-            tasks=self.tasks, # Automatically created by the @task decorator
+            tasks=worker_agents, # Automatically created by the @task decorator
             process=Process.hierarchical,
-            tools=[search_tool],
+            tools=[search_tool], 
+            manager_agent=self.content_quality_manager(),
             verbose=True,
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )
