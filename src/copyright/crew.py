@@ -2,6 +2,20 @@ from crewai import Agent, Crew, Process, Task
 from crewai.project import CrewBase, agent, crew, task
 from langchain_community.tools import DuckDuckGoSearchRun
 from crewai.tools import tool
+from crewai import LLM
+
+# Advanced configuration with detailed parameters
+llm = LLM(
+    model="gpt-4o-mini",
+    temperature=0,        # Higher for more creative outputs
+    timeout=120,           # Seconds to wait for response
+    max_tokens=4000,       # Maximum length of response
+    top_p=0.9,            # Nucleus sampling parameter
+    frequency_penalty=0.1, # Reduce repetition
+    presence_penalty=0.1,  # Encourage topic diversity
+    response_format={"type": "json"},  # For structured outputs
+    seed=42               # For reproducible results
+)
 
 search_tool = DuckDuckGoSearchRun()
 
@@ -134,5 +148,6 @@ class Copyright():
             tools=[search_tool], 
             manager_agent=self.content_quality_manager(),
             verbose=True,
+            llm=llm
             # process=Process.hierarchical, # In case you wanna use that instead https://docs.crewai.com/how-to/Hierarchical/
         )
