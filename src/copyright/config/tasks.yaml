@@ -31,7 +31,7 @@ task_write_recipe:
 
   agent: recipe_writer
   context:
-    - recipe_researcher 
+    - task_research_recipe 
 
 task_human_editing:
   description: >
