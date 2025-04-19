@@ -6,15 +6,8 @@ from crewai import LLM
 
 # Advanced configuration with detailed parameters
 llm = LLM(
-    model="gpt-4o-mini",
-    temperature=0,        # Higher for more creative outputs
-    timeout=120,           # Seconds to wait for response
-    max_tokens=4000,       # Maximum length of response
-    top_p=0.9,            # Nucleus sampling parameter
-    frequency_penalty=0.1, # Reduce repetition
-    presence_penalty=0.1,  # Encourage topic diversity
-    response_format={"type": "json"},  # For structured outputs
-    seed=42               # For reproducible results
+    model="gpt-4o",
+    temperature=0
 )
 
 search_tool = DuckDuckGoSearchRun()
