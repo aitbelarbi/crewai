@@ -16,6 +16,22 @@ task_research_recipe:
     }
   agent: recipe_researcher
 
+task_seo_analysis:
+  description: >
+    Perform an SEO analysis for the recipe identified in the previous step.
+    Use the search tool for this analysis. Specifically:
+    1. Identify 3-5 primary and secondary SEO keywords relevant to the recipe name and topic.
+    2. Find 1-2 top-ranking online articles for this specific recipe.
+    3. Briefly analyze the structure (headings, main sections) and key angles 
+    (e.g., quick/easy, specific occasion, dietary focus) of these competitor articles.
+  expected_output: >
+    A report containing:
+    1. A list of 3-5 recommended SEO keywords (primary and secondary).
+    2. A brief summary of the structure and key angles observed in 1-2 top competitor articles.
+  agent: seo_specialist
+  context: 
+    - task_research_recipe
+
 task_write_recipe:
   description: >
     Using the selected recipe from the previous step, write a detailed and engaging recipe blog post.
@@ -31,7 +47,7 @@ task_write_recipe:
 
   agent: recipe_writer
   context:
-    - task_research_recipe 
+    - task_seo_analysis 
 
 task_human_editing:
   description: >
@@ -73,36 +89,20 @@ task_check_plagiarism:
   agent: plagiarism_checker
   context:
     - task_write_recipe 
-
-task_seo_analysis:
-  description: >
-    Perform an SEO analysis for the recipe identified in the previous step.
-    Use the search tool for this analysis. Specifically:
-    1. Identify 3-5 primary and secondary SEO keywords relevant to the recipe name and topic.
-    2. Find 1-2 top-ranking online articles for this specific recipe.
-    3. Briefly analyze the structure (headings, main sections) and key angles 
-    (e.g., quick/easy, specific occasion, dietary focus) of these competitor articles.
-  expected_output: >
-    A report containing:
-    1. A list of 3-5 recommended SEO keywords (primary and secondary).
-    2. A brief summary of the structure and key angles observed in 1-2 top competitor articles.
-  agent: seo_specialist
-  context: 
-    - task_human_editing
   
 task_manage_article_creation:
   description: >
     Coordinate the full process to create an original, SEO-optimized blog post about the recipe. at least 1200 words. 
     The process involves: 
     1. Delegating research for a trending recipe related to the topic to the recipe_researcher.
-    2. Delegating article writing based on research to the recipe_writer.
-    3. Delegating article humanize to the human_editor.
-    4. Delegating a plagiarism check on the written article to the plagiarism_checker.
-    5. **CRITICAL:** Analyze the plagiarism check report. 
+    2. Analyse and improve the SEO of this article.
+    3. Delegating article writing based on research to the recipe_writer.
+    4. Delegating article humanize to the human_editor.
+    5. Delegating a plagiarism check on the written article to the plagiarism_checker.
+    6. **CRITICAL:** Analyze the plagiarism check report. 
        - If 'ORIGINALITY_OK', finalize the process and present the final article.
        - If 'PLAGIARISM_DETECTED', you MUST delegate a rewrite task back to the recipe_writer. Provide the plagiarism feedback clearly. Then, delegate the plagiarism check AGAIN on the rewritten article. Repeat this rewrite/re-check cycle only ONCE if plagiarism persists after the first rewrite.
        - If plagiarism is still detected after the second check, stop the process and report the failure to fix the plagiarism.
-    6. Analyse and improve the SEO of this article.
     Ensure you receive and manage the outputs from each delegated task to inform the next step.
   expected_output: >
     The final, approved, original blog post in Markdown format, OR a status report indicating 
