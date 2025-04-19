@@ -15,8 +15,6 @@ task_research_recipe:
       "preparation_steps": "A short summary of the preparation steps"
     }
   agent: recipe_researcher
-  context:
-    - task_manage_article_creation 
   
 task_seo_analysis:
   description: >
