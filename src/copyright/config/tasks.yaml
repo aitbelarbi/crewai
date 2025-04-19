@@ -5,7 +5,6 @@ task_research_recipe:
     Select ONE specific recipe that seems suitable for a blog post.
     Extract its name, a brief description, the main ingredients (list format),
     and a summary of the key preparation steps.
-    the input will be : {'description': 'str', 'type': 'str'}
   expected_output: >
     A concise JSON summary report containing:
     {
@@ -19,7 +18,6 @@ task_research_recipe:
 task_seo_analysis:
   description: >
     Perform an SEO analysis for the recipe identified in the previous step.
-    the input will be : {'description': 'str', 'type': 'str'}
     Use the search tool for this analysis. Specifically:
     1. Identify 3-5 primary and secondary SEO keywords relevant to the recipe name and topic.
     2. Find 1-2 top-ranking online articles for this specific recipe.
@@ -36,7 +34,6 @@ task_seo_analysis:
 task_write_recipe:
   description: >
     Using the selected recipe from the previous step, write a detailed and engaging recipe blog post.
-    the input will be : {'description': 'str', 'type': 'str'}
     The blog post should include:
       - A catchy title
       - An introductory paragraph that hooks the reader
