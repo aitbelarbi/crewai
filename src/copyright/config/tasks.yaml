@@ -19,6 +19,7 @@ task_research_recipe:
 task_seo_analysis:
   description: >
     Perform an SEO analysis for the recipe identified in the previous step.
+    the input will be : {'description': 'str', 'type': 'str'}
     Use the search tool for this analysis. Specifically:
     1. Identify 3-5 primary and secondary SEO keywords relevant to the recipe name and topic.
     2. Find 1-2 top-ranking online articles for this specific recipe.
