@@ -31,7 +31,7 @@ task_write_recipe:
 
   agent: recipe_writer
   context:
-    - task_seo_analysis 
+    - recipe_researcher 
 
 task_human_editing:
   description: >
@@ -96,8 +96,8 @@ task_manage_article_creation:
     The process involves: 
     1. Delegating research for a trending recipe related to the topic to the recipe_researcher.
     2. Delegating article writing based on research to the recipe_writer.
-    3. Delegating a plagiarism check on the written article to the plagiarism_checker.
-    4. Delegating article humanize to the task_human_editing
+    3. Delegating article humanize to the human_editor.
+    4. Delegating a plagiarism check on the written article to the plagiarism_checker.
     5. **CRITICAL:** Analyze the plagiarism check report. 
        - If 'ORIGINALITY_OK', finalize the process and present the final article.
        - If 'PLAGIARISM_DETECTED', you MUST delegate a rewrite task back to the recipe_writer. Provide the plagiarism feedback clearly. Then, delegate the plagiarism check AGAIN on the rewritten article. Repeat this rewrite/re-check cycle only ONCE if plagiarism persists after the first rewrite.
