@@ -5,14 +5,19 @@ task_research_recipe:
     Select ONE specific recipe that seems suitable for a blog post.
     Extract its name, a brief description, the main ingredients (list format),
     and a summary of the key preparation steps.
+    the input will be : {"action": "put what you want ask to agent here"}.
   expected_output: >
-    A concise summary report containing:
-    1. The chosen Recipe Name.
-    2. A brief Description of the recipe.
-    3. A list of the Main Ingredients.
-    4. A short Summary of the key preparation steps.
+    A concise JSON summary report containing:
+    {
+      "recipe_name": "The chosen recipe's name",
+      "recipe_description": "A brief description of the recipe",
+      "main_ingredients": ["List", "of", "main", "ingredients"],
+      "preparation_steps": "A short summary of the preparation steps"
+    }
   agent: recipe_researcher
-
+  context:
+    - task_manage_article_creation 
+  
 task_seo_analysis:
   description: >
     Perform an SEO analysis for the recipe identified in the previous step.
@@ -102,4 +107,6 @@ task_manage_article_creation:
   expected_output: >
     The final, approved, original blog post in Markdown format, OR a status report indicating 
     that plagiarism issues could not be resolved after the allowed rewrite attempts.
+  expected_output: >
+    the json format: {"action": "put what you want ask to agent here"}.
   agent: content_quality_manager
