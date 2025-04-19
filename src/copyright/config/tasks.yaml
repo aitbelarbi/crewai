@@ -41,6 +41,7 @@ task_write_recipe:
       - A formatted list of ingredients
       - Step-by-step instructions
       - Optional tips or serving suggestions
+      - at least 1200 words
   expected_output: >
     A blog article formatted in Markdown, ready to be edited or published.
 
@@ -91,7 +92,7 @@ task_check_plagiarism:
 
 task_manage_article_creation:
   description: >
-    Coordinate the full process to create an original, SEO-optimized blog post about the recipe.
+    Coordinate the full process to create an original, SEO-optimized blog post about the recipe. at least 1200 words. 
     The process involves: 
     1. Delegating research for a trending recipe related to the topic to the recipe_researcher.
     2. Delegating SEO analysis based on the research to the seo_specialist.
