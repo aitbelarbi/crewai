@@ -5,7 +5,7 @@ task_research_recipe:
     Select ONE specific recipe that seems suitable for a blog post.
     Extract its name, a brief description, the main ingredients (list format),
     and a summary of the key preparation steps.
-    the input will be : {"action": "put what you want ask to agent here"}.
+    the input will be : {'description': 'str', 'type': 'str'}
   expected_output: >
     A concise JSON summary report containing:
     {
@@ -108,5 +108,5 @@ task_manage_article_creation:
     The final, approved, original blog post in Markdown format, OR a status report indicating 
     that plagiarism issues could not be resolved after the allowed rewrite attempts.
   expected_output: >
-    the json format: {"action": "put what you want ask to agent here"}.
+    the json format: {'description': 'Research... steps.', 'type': 'str'}.
   agent: content_quality_manager
