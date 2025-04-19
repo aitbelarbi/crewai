@@ -108,6 +108,4 @@ task_manage_article_creation:
   expected_output: >
     The final, approved, original blog post in Markdown format, OR a status report indicating 
     that plagiarism issues could not be resolved after the allowed rewrite attempts.
-  expected_output: >
-    the json format: {'description': 'Research... steps.', 'type': 'str'}.
   agent: content_quality_manager
